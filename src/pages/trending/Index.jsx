@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import { fetchTrendingMovie, fetchTrendingTvShow } from "./query";
 import { Loader, Menu } from "semantic-ui-react";
 import ColumnDisplay  from '../home/ColumnDisplay'
+import { Navigate } from "react-router-dom";
 
 const Trending = () => {
     const [displayType, setDisplayType] = useState("movies");
@@ -14,6 +15,10 @@ const Trending = () => {
     queryKey: ["trendingTv"],
     queryFn: fetchTrendingTvShow,
   });
+
+  if (localStorage.getItem("guest_session_id") === null) {
+    return <Navigate to={"/auth"} />;
+  }
 
   if(isTrendingMovieLoading || isTrendingTvShowLoading){
     return <Loader></Loader>
