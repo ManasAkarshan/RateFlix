@@ -16,14 +16,16 @@ const Auth = () => {
 
   return (
     <Grid textAlign='center' verticalAlign='middle' style={{height:"100vh"}}>
-        <Grid.Column style={{maxWidth : 450}}>
+        <Grid.Column style={{maxWidth : 450,}}>
             <Header as="h2" color='green' textAlign='center'>
                 Welcome! Click on the button to create a guest session
             </Header> 
             <Form size='large'>
                 <Segment>
-                    <Button color='blue' size='large' fluid onClick={handleLogin}>Login</Button>
+                    <Button className='login-btn' color='blue' size='large' fluid onClick={handleLogin}>Login</Button>
+                    
                 </Segment>
+                <small style={{color:"red"}}>If your ISP is Reliance JIO please use a VPN or switch to other ISP</small>
             </Form>
         </Grid.Column>
     </Grid>

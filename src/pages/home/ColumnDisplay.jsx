@@ -6,9 +6,9 @@ import {rateMovie,  rateTvShow} from './mutation'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-const ColumnDisplay = ({ data, displayType, isRated=false}) => {
+const ColumnDisplay = ({ data, displayType, isRated=false, }) => {
   const [movieData, setMovieData] = useState([]);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(-1);
 
 
   // Rating the movie/series (Mutation)
@@ -78,20 +78,22 @@ const ColumnDisplay = ({ data, displayType, isRated=false}) => {
                           style={{ minHeight: "830px" }}
                           fluid
                           header={
-                            (displayType === "movies" )
+                            item.media_type === undefined ? (displayType === "movies" )
                               ? movieData[ind].original_title
-                              : movieData[ind].original_name
+                              : movieData[ind].original_name :
+                              (item.media_type === 'movie' ? movieData[ind].title : movieData[ind].name )
                           }
-                          image={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                          image={item.poster_path? `https://image.tmdb.org/t/p/original/${item.poster_path}` : 'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg'}
                           meta={`Release Date: ${item.release_date} | Ratings ${item.vote_average}`}
                           description={item.overview.slice(0, 400)}
+                          
                           extra={isRated && <Label  size="large" color="green">Your Rating : {item.rating}</Label>}
                         ></Card>
                         
                       </Link>
-                      {!isRated && <Form style={{ marginTop: "10px" }}>
-                        <Form.Group inline>
-                          <Form.Field>
+                      {!isRated && <Form  style={{ marginTop: "10px",}}>
+                        <Form.Group inline  >
+                          <Form.Field >
                             <Form.Input
                               type="number"
                               min="0"
@@ -106,7 +108,7 @@ const ColumnDisplay = ({ data, displayType, isRated=false}) => {
                                 icon: "star",
                                 content: "Rate",
                                 onClick: () => {
-                                  if(rating < 10) {
+                                  if(rating < 10 && rating >= 0) {
                                     rate(item.id)
                                   }
                                 }

@@ -9,6 +9,7 @@ import {
   Loader,
   Segment,
   Form,
+  Label,
 } from "semantic-ui-react";
 import { fetchMovieDetails } from "./query";
 import { rateMovie } from "../home/mutation";
@@ -58,7 +59,7 @@ const Movie = () => {
     <div style={{ marginTop: "50px" }}>
       <Segment>
         <Header>{movieData.title}</Header>
-        <Grid columns={2} divided textAlign="left" style={{ marginTop: 20 }}>
+        <Grid columns={2} divided stackable textAlign="left" style={{ marginTop: 20 }}>
           <Grid.Row>
             <Grid.Column width={6}>
               <div
@@ -69,66 +70,69 @@ const Movie = () => {
                   justifyContent: "center",
                 }}
               >
+                <Segment>
                 <Image
                   src={`https://image.tmdb.org/t/p/original/${movieData.poster_path}`}
                   size="medium"
                   centered
                 ></Image>
+                </Segment>
               </div>
             </Grid.Column>
             <Grid.Column width={10}>
+              <Segment>
               <List>
-                <List.Item>
-                  <List.Header>For Adults only:</List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>For Adults only:</List.Header>
                   {movieData.adults ? "Yes" : "No"}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Genres: </List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Genres: </List.Header>
                   {movieData.genres.map((genre) => {
-                    return <List.Item key={genre.id}>{genre.name}</List.Item>;
+                    return <Label key={genre.id}>{genre.name}</Label>;
                   })}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Budget:</List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Budget:</List.Header>
                   {new Intl.NumberFormat("en-US", {
                     style: "currency",
                     currency: "USD",
                   }).format(movieData.budget)}
+                </List.Item >
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>IMDB ID:</List.Header> {movieData.imdb_id}
                 </List.Item>
-                <List.Item>
-                  <List.Header>IMDB ID:</List.Header> {movieData.imdb_id}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Popularity:</List.Header> {movieData.popularity}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Popularity:</List.Header> {movieData.popularity}
-                </List.Item>
-                <List.Item>
-                  <List.Header>Production Companies:</List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Production Companies:</List.Header>
                   {movieData.production_companies.map(
                     (production_company, index) => {
                       return (
-                        <List.Item
-                          style={{ display: "inline" }}
+                        <Label 
+                        style={{margin:"2px 2px 2px 0"}}
                           key={production_company.id}
                         >
                           {production_company.name + ", "}
-                        </List.Item>
+                        </Label>
                       );
                     }
                   )}
-                </List.Item>
-                <List.Item>
-                  <List.Header>Release Date:</List.Header>{" "}
+                </List.Item >
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Release Date:</List.Header>{" "}
                   {movieData.release_date}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Revenue:</List.Header> {movieData.revenue}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Revenue:</List.Header> {movieData.revenue}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Vote Average:</List.Header>{" "}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Vote Average:</List.Header>{" "}
                   {movieData.vote_average}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Language:</List.Header>{" "}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Language:</List.Header>{" "}
                   {movieData.original_language}
                 </List.Item>
               </List>
@@ -158,6 +162,7 @@ const Movie = () => {
                   </Form.Field>
                 </Form.Group>
               </Form>
+              </Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>

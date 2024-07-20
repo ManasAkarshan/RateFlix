@@ -80,42 +80,42 @@ const TvShow = () => {
             </Grid.Column>
             <Grid.Column width={10}>
             <List>
-                <List.Item>
-                  <List.Header>For Adults only:</List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>For Adults only:</List.Header>
                   {seriesData.adults ? "Yes" : "No"}
                 </List.Item>
-                <List.Item>
-                  <List.Header>First Air Date:</List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>First Air Date:</List.Header>
                   {seriesData.first_air_date }
                 </List.Item>
-                <List.Item>
-                  <List.Header>Genres: </List.Header>
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Genres: </List.Header>
                   {seriesData.genres.map((genre) => {
                     return <Label key={genre.id}>{genre.name}</Label>;
                   })}
+                </List.Item >
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Popularity:</List.Header> {seriesData.popularity}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Popularity:</List.Header> {seriesData.popularity}
-                </List.Item>
-                <List.Item>
-                <List.Header>Production Companies:</List.Header>
+                <List.Item style={{marginBottom:8}}>
+                <List.Header as={"h4"}>Production Companies:</List.Header>
                   {seriesData.production_companies
                   .map((production_company, index) => {
                     return <Label style={{margin:"2px 2px 2px 0"}} key={production_company.id}>{production_company.name + ', '}</Label>;
                   })}
                 </List.Item>
 
-                <List.Item>
-                  <List.Header>Revenue:</List.Header> {seriesData.revenue}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Revenue:</List.Header> {seriesData.revenue}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Number of seasons:</List.Header> {seriesData.number_of_seasons}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Number of seasons:</List.Header> {seriesData.number_of_seasons}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Number of episodes:</List.Header> {seriesData.number_of_episodes}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Number of episodes:</List.Header> {seriesData.number_of_episodes}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Seasons:</List.Header> 
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Seasons:</List.Header> 
                   <List.Description style={{maxHeight:"200px", overflowY:"scroll"}}> 
                     <Accordion defaultActiveIndex={0} panels={seasonPanel} styled>
 
@@ -123,11 +123,11 @@ const TvShow = () => {
                   </List.Description>
                 </List.Item>
                 
-                <List.Item>
-                  <List.Header>Vote Average:</List.Header> {seriesData.vote_average}
+                <List.Item style={{marginBottom:8}}>
+                  <List.Header as={"h4"}>Vote Average:</List.Header> {seriesData.vote_average}
                 </List.Item>
-                <List.Item>
-                  <List.Header>Language:</List.Header> {seriesData.original_language}
+                <List.Item style={{marginBottom:8}}> 
+                  <List.Header as={"h4"}>Language:</List.Header> {seriesData.original_language}
                 </List.Item>
               </List>
               <Form style={{ marginTop: "10px" }}>

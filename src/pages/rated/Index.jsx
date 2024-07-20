@@ -25,7 +25,7 @@ const Rated = () => {
 
   return (
     <Container style={{ marginTop: "50px" }}>
-      <Menu pointing secondary>
+      <Menu pointing secondary color="blue" size="large" >
         <Menu.Item
           name="Movies"
           active={activeTab === "movies"}
