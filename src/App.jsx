@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {Navigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Auth from './pages/auth/Index'
 import Home from './pages/home/Index'
@@ -10,12 +10,15 @@ import Rated from './pages/rated/Index'
 
 function App() {
 
+ 
+
   return (
     <div>
       <Router>
         <Navbar></Navbar>
         <Routes>
-
+          
+          <Route path='/' element={<Home></Home>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
           <Route path='/auth' element={<Auth></Auth>}></Route>
           <Route path='/rated' element={<Rated/>}></Route>
