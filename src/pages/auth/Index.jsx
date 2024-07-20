@@ -9,7 +9,7 @@ const Auth = () => {
     const { data, mutate } = useMutation({mutationKey : "login", mutationFn : mutationLogin});
 
     const handleLogin = async ()=>{
-        await mutate();
+        await mutate()
         localStorage.setItem("guest_session_id", data.guest_session_id);
         navigate("/home")
     }
